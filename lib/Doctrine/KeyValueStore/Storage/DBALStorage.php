@@ -82,13 +82,10 @@ class DBALStorage implements Storage
      */
     public function insert($storageName, $key, array $data)
     {
-        try {
-            $this->conn->insert($this->table, [
-                $this->keyColumn  => $key,
-                $this->dataColumn => serialize($data),
-            ]);
-        } catch (\Exception $e) {
-        }
+        $this->conn->insert($this->table, [
+            $this->keyColumn  => $key,
+            $this->dataColumn => serialize($data),
+        ]);
     }
 
     /**
@@ -99,14 +96,11 @@ class DBALStorage implements Storage
      */
     public function update($storageName, $key, array $data)
     {
-        try {
-            $this->conn->update($this->table, [
-                $this->dataColumn => serialize($data),
-            ], [
-                $this->keyColumn => $key,
-            ]);
-        } catch (\Exception $e) {
-        }
+        $this->conn->update($this->table, [
+            $this->dataColumn => serialize($data),
+        ], [
+            $this->keyColumn => $key,
+        ]);
     }
 
     /**
@@ -116,10 +110,7 @@ class DBALStorage implements Storage
      */
     public function delete($storageName, $key)
     {
-        try {
-            $this->conn->delete($this->table, [$this->keyColumn => $key]);
-        } catch (\Exception $e) {
-        }
+        $this->conn->delete($this->table, [$this->keyColumn => $key]);
     }
 
     /**
